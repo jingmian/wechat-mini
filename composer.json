@@ -1,0 +1,25 @@
+{
+  "name": "sunnyos/wechat-miniprogram",
+  "description": "小程序后端sdk",
+  "type": "library",
+  "homepage": "https://github.com/sunnyos/wechat-miniprogram",
+  "license": "Apache-2.0",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Sunny",
+      "email": "admin@sunnyos.com"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/sunnyos/wechat-miniprogram/issues"
+  },
+  "require": {
+    "php": ">=7.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sunny\\WechatMini\\": "src/"
+    }
+  }
+}
