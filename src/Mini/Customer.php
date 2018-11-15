@@ -14,35 +14,16 @@ namespace Sunny\WechatMini\Mini;
 
 
 use Sunny\WechatMini\Library\Http;
+use Sunny\WechatMini\Traits\Common;
 
 class Customer
 {
-    private $access_token;
+    use Common;
 
     // 对用户下发"正在输入"状态
     const TYPING = 'Typing';
     // 取消对用户的"正在输入"状态
     const CANCEL = 'CancelTyping';
-
-    /**
-     * 获取access_token
-     * @return mixed
-     */
-    public function getAccessToken()
-    {
-        return $this->access_token;
-    }
-
-    /**
-     * 设置access_token
-     * @param mixed $access_token
-     * @return Customer
-     */
-    public function setAccessToken($access_token)
-    {
-        $this->access_token = $access_token;
-        return $this;
-    }
 
     /**
      * 下发状态

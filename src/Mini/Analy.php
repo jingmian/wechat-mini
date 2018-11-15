@@ -15,30 +15,11 @@ namespace Sunny\WechatMini\Mini;
 
 use Sunny\WechatMini\Exception\WechatMiniException;
 use Sunny\WechatMini\Library\Http;
+use Sunny\WechatMini\Traits\Common;
 
 class Analy
 {
-    private $access_token;
-
-    /**
-     * 获取access_token
-     * @return mixed
-     */
-    public function getAccessToken()
-    {
-        return $this->access_token;
-    }
-
-    /**
-     * 设置access_token
-     * @param mixed $access_token
-     * @return Analy
-     */
-    public function setAccessToken($access_token)
-    {
-        $this->access_token = $access_token;
-        return $this;
-    }
+    use Common;
 
     /**
      * 执行网络请求
@@ -47,7 +28,7 @@ class Analy
      * @param string $end_date $end_date 结束日期，限定查询1天数据，允许设置的最大值为昨日。格式为 yyyymmdd
      * @return mixed
      */
-    private function exec($url, $begin_date = '', $end_date = '')
+    private function execWithDate($url, $begin_date = '', $end_date = '')
     {
         $params['access_token'] = $this->getAccessToken();
         $data['begin_date'] = $begin_date;
@@ -70,7 +51,7 @@ class Analy
      */
     public function dailyRetain($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_DAILY_RETAIN, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_DAILY_RETAIN, $begin_date, $end_date);
     }
 
     /**
@@ -81,7 +62,7 @@ class Analy
      */
     public function dailySummary($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_DAILY_SUMMARY, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_DAILY_SUMMARY, $begin_date, $end_date);
     }
 
     /**
@@ -92,7 +73,7 @@ class Analy
      */
     public function dailyVisitTrend($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_DAILY_VISIT_TREND, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_DAILY_VISIT_TREND, $begin_date, $end_date);
     }
 
     /**
@@ -103,7 +84,7 @@ class Analy
      */
     public function monthlyRetain($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_MONTHLY_RETAIN, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_MONTHLY_RETAIN, $begin_date, $end_date);
     }
 
     /**
@@ -114,7 +95,7 @@ class Analy
      */
     public function monthlyVisitTrend($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_MONTHLY_VISIT_TREND, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_MONTHLY_VISIT_TREND, $begin_date, $end_date);
     }
 
     /**
@@ -125,7 +106,7 @@ class Analy
      */
     public function userPortrait($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_USER_PORTRAIT, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_USER_PORTRAIT, $begin_date, $end_date);
     }
 
     /**
@@ -136,7 +117,7 @@ class Analy
      */
     public function visitDistribution($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_VISIT_DISTRIBUTION, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_VISIT_DISTRIBUTION, $begin_date, $end_date);
     }
 
     /**
@@ -147,7 +128,7 @@ class Analy
      */
     public function visitPage($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_VISIT_PAGE, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_VISIT_PAGE, $begin_date, $end_date);
     }
 
     /**
@@ -158,7 +139,7 @@ class Analy
      */
     public function weeklyRetain($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_WEEK_RETAIN, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_WEEK_RETAIN, $begin_date, $end_date);
     }
 
     /**
@@ -169,7 +150,7 @@ class Analy
      */
     public function weeklyVisitTrend($begin_date = '', $end_date = '')
     {
-        return $this->exec(ApiUrl::ANALYSIS_WEEKLY_VISIT_TREND, $begin_date, $end_date);
+        return $this->execWithDate(ApiUrl::ANALYSIS_WEEKLY_VISIT_TREND, $begin_date, $end_date);
     }
 
 }

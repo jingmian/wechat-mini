@@ -14,47 +14,11 @@ namespace Sunny\WechatMini\Mini;
 
 
 use Sunny\WechatMini\Library\Http;
+use Sunny\WechatMini\Traits\Common;
 
 class Plugin
 {
-    private $access_token;
-    /**
-     * 获取access_token
-     * @return mixed
-     */
-    public function getAccessToken()
-    {
-        return $this->access_token;
-    }
-
-    /**
-     * 设置access_token
-     * @param mixed $access_token
-     * @return Plugin
-     */
-    public function setAccessToken($access_token)
-    {
-        $this->access_token = $access_token;
-        return $this;
-    }
-
-    /**
-     * 执行网络请求
-     * @param string $url 接口地址
-     * @param array $data post参数
-     * @return mixed
-     */
-    private function exec($url, $data)
-    {
-        $params['access_token'] = $this->getAccessToken();
-        $http = new Http();
-        $http->setUrl($url);
-        $http->setMethod(Http::POST);
-        $http->setIsJson(true);
-        $http->setParam($params);
-        $http->setData($data);
-        return $http->exec();
-    }
+    use Common;
 
     /**
      * 向插件开发者发起使用插件的申请

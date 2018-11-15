@@ -3,7 +3,7 @@
 use Sunny\WechatMini\WechatMini;
 
 require_once '../vendor/autoload.php';
-$token = '15_oOSxJXpjOt75egHm1MCnkSmCLK9ceByJF_s5Uj-98fgh0YM0V3KuHDbcwDm9gYxXc5zcsofArSZKtEouDuSyZFMwggX4GdgZkS2gFoU2MoJLuWeJry_8Kuni8qhyTlDYR_4ebfTGe4ccpcRSLXIdAJAAMX';
+$token = '';
 $appid = '';
 $secret = '';
 $wechat = new WechatMini($appid,$secret);
@@ -95,3 +95,4 @@ echo $wechat->getNear()->setAccessToken($token)->addNearbyPoi($data);
 ];
 $emphasis_keyword = 'keyword1.DATA';
 echo $wechat->getTemplate()->setAccessToken($token)->sendTemplateMessage('openid','template_id','FORMID',$data,'index',$emphasis_keyword);*/
+

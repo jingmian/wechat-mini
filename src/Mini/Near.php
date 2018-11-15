@@ -14,48 +14,11 @@ namespace Sunny\WechatMini\Mini;
 
 
 use Sunny\WechatMini\Library\Http;
+use Sunny\WechatMini\Traits\Common;
 
 class Near
 {
-    private $access_token;
-
-    /**
-     * 获取access_token
-     * @return mixed
-     */
-    public function getAccessToken()
-    {
-        return $this->access_token;
-    }
-
-    /**
-     * 设置access_token
-     * @param mixed $access_token
-     * @return Near
-     */
-    public function setAccessToken($access_token)
-    {
-        $this->access_token = $access_token;
-        return $this;
-    }
-
-    /**
-     * 执行网络请求
-     * @param string $url 接口地址
-     * @param $data
-     * @return mixed
-     */
-    private function exec($url, $data)
-    {
-        $params['access_token'] = $this->getAccessToken();
-        $http = new Http();
-        $http->setUrl($url);
-        $http->setMethod(Http::POST);
-        $http->setIsJson(true);
-        $http->setParam($params);
-        $http->setData($data);
-        return $http->exec();
-    }
+    use Common;
 
     /**
      * 添加附近小程序
@@ -105,6 +68,6 @@ class Near
     {
         $data['poi_id'] = $poi_id;
         $data['status'] = $status;
-        return $this->exec(ApiUrl::NEARBY_POI_SHOW_STATUS,$data);
+        return $this->exec(ApiUrl::NEARBY_POI_SHOW_STATUS, $data);
     }
 }

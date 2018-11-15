@@ -13,49 +13,11 @@
 namespace Sunny\WechatMini\Mini;
 
 
-use Sunny\WechatMini\Library\Http;
+use Sunny\WechatMini\Traits\Common;
 
 class Qrcode
 {
-    private $access_token;
-
-    /**
-     * 获取access_token
-     * @return mixed
-     */
-    public function getAccessToken()
-    {
-        return $this->access_token;
-    }
-
-    /**
-     * 设置access_token
-     * @param mixed $access_token
-     * @return Qrcode
-     */
-    public function setAccessToken($access_token)
-    {
-        $this->access_token = $access_token;
-        return $this;
-    }
-
-    /**
-     * 执行网络请求
-     * @param string $url 接口地址
-     * @param $data
-     * @return mixed
-     */
-    private function exec($url, $data)
-    {
-        $params['access_token'] = $this->getAccessToken();
-        $http = new Http();
-        $http->setUrl($url);
-        $http->setMethod(Http::POST);
-        $http->setIsJson(true);
-        $http->setParam($params);
-        $http->setData($data);
-        return $http->exec();
-    }
+    use Common;
 
     /**
      * 获取小程序二维码，适用于需要的码数量较少的业务场景。通过该接口生成的小程序码，永久有效，有数量限制。
